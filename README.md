@@ -2,16 +2,18 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Status-Live-success?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/Hosted_on-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white" alt="Render">
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
   <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.io">
-  <img src="https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white" alt="Railway">
 </p>
 
 ---
 
 ### 🚀 ¡Juega ahora mismo!
 Puedes probar la aplicación en vivo haciendo clic en el siguiente enlace:
-> [**https://hundirlaflota-production.up.railway.app/**](https://hundirlaflota-production.up.railway.app/)
+> [**https://TU-APP-AQUI.onrender.com/**](https://TU-APP-AQUI.onrender.com/)
+
+*Nota: Debido al plan gratuito de Render, la aplicación puede tardar unos 30 segundos en cargar si no ha tenido actividad reciente.*
 
 ---
 
@@ -21,9 +23,9 @@ Una experiencia clásica de **Batalla Naval** reinventada para la web moderna. E
 ### ✨ Características Premium
 * **Multijugador Real-Time:** 2 jugadores simultáneos vía WebSockets.
 * **Interfaz Profesional:** Tableros "Lado a Lado" con selección de equipo (Azul vs Rojo).
-* **Feedback Visual:** Animaciones de explosiones, salpicaduras y efectos de burbujas (Canvas API).
+* **Feedback Visual:** Animaciones de explosiones, salpicaduras y efectos de burbujas.
 * **Estadísticas en Vivo:** Seguimiento de disparos, impactos y precisión en tiempo real.
-* **Responsive Design:** Juega desde tu móvil, tablet o PC.
+* **Responsive Design:** Optimizado para móviles, tablets y PC.
 
 ---
 
@@ -34,7 +36,7 @@ Una experiencia clásica de **Batalla Naval** reinventada para la web moderna. E
 | **Backend** | Node.js + Express |
 | **Comunicación** | Socket.io (WebSockets) |
 | **Frontend** | HTML5 / CSS3 / JavaScript Vanilla |
-| **Efectos** | Canvas API para partículas |
+| **Despliegue** | Render (Web Service) |
 
 ---
 
@@ -55,8 +57,6 @@ Una experiencia clásica de **Batalla Naval** reinventada para la web moderna. E
 
 ## 💻 Instalación Local
 
-Si deseas ejecutar el proyecto localmente o en tu propia red:
-
 ```bash
 # 1. Clonar el repositorio y entrar a la carpeta
 cd batalla-naval-multiplayer
@@ -66,21 +66,6 @@ npm install
 
 # 3. Iniciar el servidor
 npm start
-```
-
-El servidor estará disponible en `http://localhost:3000`.
-
----
-
-## 📂 Estructura del Proyecto
-```text
-├── server.js          # Servidor Node.js + Lógica de Sockets
-├── package.json       # Dependencias
-├── public/            # Archivos del Frontend
-│   ├── index.html     # Estructura
-│   ├── styles.css     # Estilos y animaciones
-│   └── game.js        # Lógica del cliente
-└── README.md          # Documentación
 ```
 
 ---
