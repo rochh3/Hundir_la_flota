@@ -1,0 +1,17 @@
+{
+  "name": "batalla-naval-multiplayer",
+  "version": "2.0.0",
+  "description": "Batalla Naval Multiplayer - Real-time PvP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1"
+  },
+  "keywords": ["battleship", "multiplayer", "websockets", "game"],
+  "author": "",
+  "license": "MIT"
+}

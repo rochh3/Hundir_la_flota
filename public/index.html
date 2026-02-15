@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalla Naval - Multiplayer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Pantalla de selección de equipo -->
+    <div id="team-selection" class="team-selection-screen">
+        <div class="selection-container">
+            <h1 class="main-title">⚓ BATALLA NAVAL ⚓</h1>
+            <p class="subtitle">Multiplayer - Tiempo Real</p>
+            
+            <div class="team-selection-box">
+                <h2>Selecciona tu Equipo</h2>
+                <div class="teams-grid">
+                    <div class="team-card blue-team" id="select-blue" data-team="blue">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 100 100" width="80" height="80">
+                                <rect x="20" y="35" width="60" height="30" fill="#2196F3" rx="5"/>
+                                <polygon points="50,15 40,35 60,35" fill="#1976D2"/>
+                                <circle cx="50" cy="50" r="8" fill="#BBDEFB"/>
+                            </svg>
+                        </div>
+                        <h3>EQUIPO AZUL</h3>
+                        <p class="team-status" id="blue-status">Disponible</p>
+                    </div>
+                    
+                    <div class="team-card red-team" id="select-red" data-team="red">
+                        <div class="team-icon">
+                            <svg viewBox="0 0 100 100" width="80" height="80">
+                                <rect x="20" y="35" width="60" height="30" fill="#F44336" rx="5"/>
+                                <polygon points="50,15 40,35 60,35" fill="#D32F2F"/>
+                                <circle cx="50" cy="50" r="8" fill="#FFCDD2"/>
+                            </svg>
+                        </div>
+                        <h3>EQUIPO ROJO</h3>
+                        <p class="team-status" id="red-status">Disponible</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="connection-status">
+                <div class="status-indicator" id="connection-indicator"></div>
+                <span id="connection-text">Conectando al servidor...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de juego -->
+    <div id="game-screen" class="game-screen" style="display: none;">
+        <div class="ocean-background">
+            <canvas id="bubbles-canvas"></canvas>
+            <div class="wave wave-1"></div>
+            <div class="wave wave-2"></div>
+            <div class="wave wave-3"></div>
+        </div>
+
+        <div class="game-container">
+            <!-- Header -->
+            <header class="game-header">
+                <div class="header-content">
+                    <h1 class="game-title">BATALLA NAVAL</h1>
+                    <div class="game-info">
+                        <div class="your-team" id="your-team-display"></div>
+                        <div class="turn-indicator" id="turn-indicator">
+                            <span class="turn-text">Turno: <strong id="current-turn">-</strong></span>
+                        </div>
+                        <div class="game-status" id="game-status">Colocando barcos...</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Tableros -->
+            <div class="boards-wrapper">
+                <!-- Tablero Izquierdo: TU TABLERO -->
+                <div class="board-panel left-panel" id="left-panel">
+                    <div class="panel-header">
+                        <svg class="panel-icon" viewBox="0 0 100 100" width="40" height="40">
+                            <rect x="20" y="35" width="60" height="30" rx="5" id="left-ship-color"/>
+                            <polygon points="50,15 40,35 60,35" id="left-triangle-color"/>
+                            <circle cx="50" cy="50" r="8" id="left-circle-color"/>
+                        </svg>
+                        <h2 class="panel-title">TU TABLERO</h2>
+                    </div>
+                    
+                    <div class="board-wrapper" id="left-board-wrapper">
+                        <div id="my-grid" class="game-grid"></div>
+                    </div>
+
+                    <!-- Panel de barcos -->
+                    <div class="ships-panel" id="ships-panel">
+                        <h3 class="ships-title">Coloca tus Barcos</h3>
+                        <div id="ships-container" class="ships-list"></div>
+                        <div class="controls">
+                            <button id="ready-btn" class="btn btn-ready" disabled>
+                                ✓ Estoy Listo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Estado del oponente -->
+                    <div class="opponent-status" id="opponent-status">
+                        <div class="status-box">
+                            <div class="status-icon">⏳</div>
+                            <div class="status-text">Esperando al oponente...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tablero Derecho: TABLERO ENEMIGO -->
+                <div class="board-panel right-panel" id="right-panel">
+                    <div class="panel-header">
+                        <svg class="panel-icon" viewBox="0 0 100 100" width="40" height="40">
+                            <circle cx="50" cy="50" r="35" fill="none" stroke-width="4" id="right-target-stroke"/>
+                            <circle cx="50" cy="50" r="20" fill="none" stroke-width="3" id="right-inner-stroke"/>
+                            <circle cx="50" cy="50" r="5" id="right-center-fill"/>
+                        </svg>
+                        <h2 class="panel-title">TABLERO ENEMIGO</h2>
+                    </div>
+                    
+                    <div class="board-wrapper" id="right-board-wrapper">
+                        <div id="enemy-grid" class="game-grid"></div>
+                    </div>
+
+                    <!-- Panel de información -->
+                    <div class="ships-panel">
+                        <h3 class="ships-title">Información de Ataque</h3>
+                        <div class="attack-legend">
+                            <div class="legend-item">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <circle cx="12" cy="12" r="10" fill="#F44336"/>
+                                    <path d="M12,2 L14,10 L22,12 L14,14 L12,22 L10,14 L2,12 L10,10 Z" fill="#FFD700"/>
+                                </svg>
+                                <span>Barco Tocado</span>
+                            </div>
+                            <div class="legend-item">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <circle cx="12" cy="12" r="10" fill="#2196F3"/>
+                                    <circle cx="12" cy="12" r="6" fill="#BBDEFB"/>
+                                </svg>
+                                <span>Agua</span>
+                            </div>
+                        </div>
+                        <div class="attack-stats" id="attack-stats">
+                            <div class="stat">
+                                <span class="stat-label">Disparos:</span>
+                                <span class="stat-value" id="shots-count">0</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Impactos:</span>
+                                <span class="stat-value" id="hits-count">0</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">Precisión:</span>
+                                <span class="stat-value" id="accuracy">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de victoria/derrota -->
+        <div id="game-over-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-icon" id="result-icon"></div>
+                <h2 id="result-title"></h2>
+                <p id="result-message"></p>
+                <button id="play-again-btn" class="btn btn-primary">Jugar de Nuevo</button>
+            </div>
+        </div>
+
+        <!-- Efectos de explosión -->
+        <div id="effects-container"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

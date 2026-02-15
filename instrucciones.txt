@@ -1,0 +1,152 @@
+# 📥 INSTRUCCIONES DE INSTALACIÓN
+
+## 🗂️ ESTRUCTURA DE CARPETAS:
+
+Crea esta estructura en tu computadora:
+
+```
+batalla-naval-multiplayer/
+├── package.json          (archivo 1)
+├── server.js             (archivo 2)
+├── README.md             (archivo 6)
+└── public/
+    ├── index.html        (archivo 3)
+    ├── styles.css        (archivo 4)
+    └── game.js           (archivo 5)
+```
+
+## 📝 PASOS PARA INSTALAR:
+
+### 1️⃣ Crear carpetas:
+
+**Windows:**
+```cmd
+mkdir batalla-naval-multiplayer
+cd batalla-naval-multiplayer
+mkdir public
+```
+
+**Mac/Linux:**
+```bash
+mkdir -p batalla-naval-multiplayer/public
+cd batalla-naval-multiplayer
+```
+
+### 2️⃣ Descargar archivos:
+
+Descarga cada archivo y colócalo en su carpeta correspondiente:
+
+- `1_package.json` → Renombrar a `package.json` (raíz del proyecto)
+- `2_server.js` → Renombrar a `server.js` (raíz del proyecto)
+- `3_index.html` → Renombrar a `index.html` (dentro de `public/`)
+- `4_styles.css` → Renombrar a `styles.css` (dentro de `public/`)
+- `5_game.js` → Renombrar a `game.js` (dentro de `public/`)
+- `6_README.md` → Renombrar a `README.md` (raíz del proyecto)
+
+### 3️⃣ Instalar dependencias:
+
+Abre la terminal en la carpeta `batalla-naval-multiplayer` y ejecuta:
+
+```bash
+npm install
+```
+
+Esto instalará:
+- Express (servidor web)
+- Socket.IO (WebSockets para tiempo real)
+
+### 4️⃣ Iniciar el servidor:
+
+```bash
+npm start
+```
+
+Deberías ver:
+```
+╔═══════════════════════════════════════════════════════════╗
+║     ⚓  BATALLA NAVAL MULTIPLAYER - SERVIDOR  ⚓          ║
+║   🌊  Servidor corriendo en http://localhost:3000  🌊    ║
+╚═══════════════════════════════════════════════════════════╝
+```
+
+### 5️⃣ Jugar:
+
+- Abre tu navegador: `http://localhost:3000`
+- Abre OTRA pestaña: `http://localhost:3000`
+- ¡Selecciona equipos diferentes y juega!
+
+---
+
+## 🌐 JUGAR EN RED LOCAL (con tu novia):
+
+### Opción 1: Misma computadora
+- Pestaña 1: Jugador Azul
+- Pestaña 2: Jugador Rojo
+
+### Opción 2: Diferentes dispositivos (misma WiFi)
+
+**En tu computadora:**
+1. Ejecuta `npm start`
+2. Averigua tu IP local:
+   - Windows: `ipconfig` (busca IPv4)
+   - Mac: `ifconfig` (busca inet)
+   - Ejemplo: `192.168.1.5`
+
+**En el dispositivo de tu novia:**
+- Abre el navegador
+- Ve a: `http://192.168.1.5:3000` (usa TU IP)
+- ¡Selecciona equipo y juega!
+
+---
+
+## ❓ PROBLEMAS COMUNES:
+
+### "npm: command not found"
+- Necesitas instalar Node.js
+- Descarga: https://nodejs.org/
+- Instala la versión LTS (recomendada)
+
+### "Port 3000 already in use"
+- Edita `server.js`
+- Cambia: `const PORT = 3000;` → `const PORT = 4000;`
+
+### "Cannot GET /"
+- Verifica que la carpeta `public/` esté en el lugar correcto
+- Los archivos HTML, CSS y JS deben estar dentro de `public/`
+
+### No se conecta el otro jugador
+- Asegúrate de estar en la MISMA red WiFi
+- Verifica el firewall (puede bloquear el puerto)
+- Prueba con `http://localhost:3000` primero
+
+---
+
+## ✅ VERIFICAR QUE TODO FUNCIONA:
+
+Deberías tener esta estructura exacta:
+
+```
+batalla-naval-multiplayer/
+│
+├── package.json              ✓ Dependencias
+├── server.js                 ✓ Servidor backend
+├── README.md                 ✓ Documentación
+├── node_modules/             ✓ Se crea automáticamente con npm install
+│
+└── public/
+    ├── index.html            ✓ Interfaz del juego
+    ├── styles.css            ✓ Estilos
+    └── game.js               ✓ Lógica del juego
+```
+
+---
+
+## 🎮 ¡LISTO PARA JUGAR!
+
+1. ✅ Carpetas creadas
+2. ✅ Archivos descargados y renombrados
+3. ✅ `npm install` ejecutado
+4. ✅ `npm start` corriendo
+5. ✅ Navegador abierto en `localhost:3000`
+
+**¡A HUNDIR LA FLOTA!** 🚢💥
